@@ -40,8 +40,8 @@ class GIFViewCell: UITableViewCell {
         self.addSubview(loadingGif)
                 
                 
-                loadingGif.width(300)
-                loadingGif.height(300)
+                loadingGif.width(350)
+                loadingGif.aspectRatio(1)
                 loadingGif.centerXToSuperview()
     }
     

@@ -16,17 +16,13 @@ import SwiftyJSON
 class TableView: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     
-    //URL of random GIF using Giphy API
+    // URL of random GIF using Giphy API
     let GIF_URL = "https://api.giphy.com/v1/gifs/random?api_key=5ci16c2iy4REhED98tYKaLQ6MegBELxz&tag=&rating=G"
     
     var images = [#imageLiteral(resourceName: "Image4"),#imageLiteral(resourceName: "Image3"),#imageLiteral(resourceName: "Image1"),#imageLiteral(resourceName: "Image2")]
+    //MARK: - Creating UI Elements
     
-    
-    
-    let navBar: UINavigationBar = {
-        let nav = UINavigationBar()
-        return nav
-    }()
+    let label = UILabel()
     
     let tableView: UITableView = {
         let gif = UITableView()
@@ -37,12 +33,12 @@ class TableView: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }()
     
     
-    
+    //MARK: - Updating UI with methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        setupNavigationBar()
+
         setupTableView()
+        setupLabel()
         
         self.tableView.register(GIFViewCell.self, forCellReuseIdentifier: "GIFViewCell")
 
@@ -60,24 +56,27 @@ class TableView: UIViewController, UITableViewDelegate, UITableViewDataSource {
 //        }()
         
     }
-    
-    func setupNavigationBar(){
-        view.addSubview(navBar)
-        navigationItem.title = "GIPHY"
-        navigationController?.navigationBar.tintColor = .gray
-        navigationController?.navigationBar.prefersLargeTitles = true
+
+    //MARK: - UI ELements setup
+    func setupLabel() {
+        view.addSubview(label)
+        label.text = "GIPHY"
+        label.topToSuperview(offset: 20, usingSafeArea: true)
+        label.centerXToSuperview()
+        label.adjustsFontForContentSizeCategory = true
+        label.font = UIFont.boldSystemFont(ofSize: 30.0)
+        label.sizeToFit()
         
     }
-    
     func setupTableView() {
         view.addSubview(tableView)
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.edgesToSuperview( insets: TinyEdgeInsets(top: 100, left: 0, bottom: 0, right: 0),  usingSafeArea: true)
+        tableView.edgesToSuperview(insets: TinyEdgeInsets(top: 70, left: 0, bottom: 0, right: 0),  usingSafeArea: true)
     }
     
     
-    //Get random GIF URL method using Alamofire and SwiftyJSON
+    //MARK: - Get random GIF URL method using Alamofire and SwiftyJSON
     func getGifData(url: String) -> (String) {
         
         var gifURL = ""
@@ -117,12 +116,6 @@ class TableView: UIViewController, UITableViewDelegate, UITableViewDataSource {
         return gifURL
     }
     
-//    func connectionIssues() {
-//        let nextViewController = ErrorViewController()
-//
-//         navigationController?.pushViewController(nextViewController,
-//         animated: true)
-//    }
     
 //    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
 //
@@ -133,7 +126,7 @@ class TableView: UIViewController, UITableViewDelegate, UITableViewDataSource {
  
 
 
-
+//MARK: - TableView Methods
 
 func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return images.count
@@ -151,7 +144,7 @@ func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> U
 }
     
 func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 350
+        return 400
     }
     
 }
