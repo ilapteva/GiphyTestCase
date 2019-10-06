@@ -164,6 +164,10 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Gifu/Gifu.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/Localize-Swift/Localize_Swift.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/PagingDataController/PagingDataController.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/SVPullToRefresh/SVPullToRefresh.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/SiFUtilities/SiFUtilities.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/TinyConstraints/TinyConstraints.framework"
 fi
@@ -171,6 +175,10 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Gifu/Gifu.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/Localize-Swift/Localize_Swift.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/PagingDataController/PagingDataController.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/SVPullToRefresh/SVPullToRefresh.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/SiFUtilities/SiFUtilities.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/TinyConstraints/TinyConstraints.framework"
 fi

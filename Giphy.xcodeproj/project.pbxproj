@@ -17,7 +17,6 @@
 		2A5BA78D2344BD0100D07BF5 /* DispatchQueueHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5BA78C2344BD0100D07BF5 /* DispatchQueueHelper.swift */; };
 		2A5BA78F2344BD3A00D07BF5 /* giphy.gif in Resources */ = {isa = PBXBuildFile; fileRef = 2A5BA78E2344BD3900D07BF5 /* giphy.gif */; };
 		2ACC49E023450BF4001B2E59 /* giphycat.gif in Resources */ = {isa = PBXBuildFile; fileRef = 2ACC49DF23450BF4001B2E59 /* giphycat.gif */; };
-		2ACC49E42345145C001B2E59 /* Gif.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACC49E32345145C001B2E59 /* Gif.swift */; };
 		C3A2626A7761F78A3DC54615 /* Pods_Giphy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 730D531467E1F965AF6ECA80 /* Pods_Giphy.framework */; };
 /* End PBXBuildFile section */
 
@@ -35,7 +34,6 @@
 		2A5BA78C2344BD0100D07BF5 /* DispatchQueueHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DispatchQueueHelper.swift; path = GifInUIImageViewResources/DispatchQueueHelper.swift; sourceTree = SOURCE_ROOT; };
 		2A5BA78E2344BD3900D07BF5 /* giphy.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = giphy.gif; sourceTree = SOURCE_ROOT; };
 		2ACC49DF23450BF4001B2E59 /* giphycat.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = giphycat.gif; sourceTree = SOURCE_ROOT; };
-		2ACC49E32345145C001B2E59 /* Gif.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gif.swift; sourceTree = "<group>"; };
 		3AFE24DEE9B9F6565E0651FE /* Pods-Giphy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Giphy.release.xcconfig"; path = "Target Support Files/Pods-Giphy/Pods-Giphy.release.xcconfig"; sourceTree = "<group>"; };
 		730D531467E1F965AF6ECA80 /* Pods_Giphy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Giphy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -100,7 +98,6 @@
 			children = (
 				2A1609772342724D00AFBAC0 /* TableView.swift */,
 				2A152FE22347648600786178 /* GIFTableViewCell.swift */,
-				2ACC49E32345145C001B2E59 /* Gif.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -251,7 +248,6 @@
 				2A1609782342724E00AFBAC0 /* TableView.swift in Sources */,
 				2A152FE32347648600786178 /* GIFTableViewCell.swift in Sources */,
 				2A1609642342703E00AFBAC0 /* AppDelegate.swift in Sources */,
-				2ACC49E42345145C001B2E59 /* Gif.swift in Sources */,
 				2A1609662342703E00AFBAC0 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

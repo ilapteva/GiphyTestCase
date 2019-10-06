@@ -11,15 +11,17 @@ import UIKit
 import TinyConstraints
 import Gifu
 import Alamofire
+import AlamofireImage
 import SwiftyJSON
+import PagingDataController
 
 class TableView: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    var fetchingMore = false
     
     // URL of random GIF using Giphy API
-    let GIF_URL = "https://api.giphy.com/v1/gifs/random?api_key=5ci16c2iy4REhED98tYKaLQ6MegBELxz&tag=&rating=G"
+    let GIF_URL = "https://api.giphy.com/v1/gifs/random?api_key=5ci16c2iy4REhED98tYKaLQ6MegBELxz&tag=kittens&rating=G"
     
-    var images = [#imageLiteral(resourceName: "Image4"),#imageLiteral(resourceName: "Image3"),#imageLiteral(resourceName: "Image1"),#imageLiteral(resourceName: "Image2")]
     //MARK: - Creating UI Elements
     
     let label = UILabel()
@@ -32,8 +34,10 @@ class TableView: UIViewController, UITableViewDelegate, UITableViewDataSource {
         return gif
     }()
     
+
     
     //MARK: - Updating UI with methods
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -41,19 +45,6 @@ class TableView: UIViewController, UITableViewDelegate, UITableViewDataSource {
         setupLabel()
         
         self.tableView.register(GIFViewCell.self, forCellReuseIdentifier: "GIFViewCell")
-
-
-        
-        let gifURL = getGifData(url: GIF_URL)
-        let convertedGifURL =  URL(string: gifURL)
-        print(convertedGifURL)
-//        var loadingGif: GIFImageView = {
-//            let view = GIFImageView()
-//
-//            view.animate(withGIFURL: convertedGifURL)
-//
-//            return view
-//        }()
         
     }
 
@@ -77,7 +68,7 @@ class TableView: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     
     //MARK: - Get random GIF URL method using Alamofire and SwiftyJSON
-    func getGifData(url: String) -> (String) {
+    func getGifImage() -> (UIImage?)  {
         
         var gifURL = ""
         
@@ -89,7 +80,7 @@ class TableView: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 let gifJSON : JSON = JSON(response.result.value!)
 
                 gifURL = gifJSON["data"]["image_original_url"].stringValue
-                
+                print ("Gif URL: \(gifURL) end of URL")
                 
             }
             else {
@@ -98,14 +89,14 @@ class TableView: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 alert.addAction(UIAlertAction(title: "Try Again", style: .default, handler: { action in
                       switch action.style{
                       case .default:
-                            print("default")
+                            self.getGifImage()
 
                       case .cancel:
                             print("cancel")
 
                       case .destructive:
                             print("destructive")
-
+                        
 
                       @unknown default:
                         fatalError()
@@ -113,7 +104,37 @@ class TableView: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 self.present(alert, animated: true, completion: nil)
             }
         }
-        return gifURL
+        
+        
+        var imageGIF: UIImage? = nil
+        Alamofire.request(gifURL).responseImage {
+            response in
+            debugPrint(response)
+
+            print(response.request)
+            print(response.response)
+            debugPrint(response.result)
+            if let image = response.result.value {
+                print("image downloaded: \(imageGIF)")
+                imageGIF = response.result.value!
+            }
+            else {
+                imageGIF = UIImage()
+                print ("Error \(String(describing: response.result.error))")
+                let alert = UIAlertController(title: "Sorry!", message: "Can't load GIF", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Try Again", style: .default, handler: { action in
+                      switch action.style{
+                      case .default:
+                        self.getGifImage()
+                        
+                      @unknown default:
+                        fatalError()
+                    }}))
+                self.present(alert, animated: true, completion: nil)
+            }
+
+        }
+        return imageGIF
     }
     
     
@@ -121,22 +142,39 @@ class TableView: UIViewController, UITableViewDelegate, UITableViewDataSource {
 //
 //        let offsetY = scrollView.contentOffset.y
 //        let contentHeight = scrollView.contentSize.height
+//    if offsetY > contentHeight - scrollView.frame.height {
+//    if !fetchingMore {
+//      beginBatchFetched()
 //    }
-
+//    }
+//
+//    func beginBatchFetched() {
+//     fetchingMore = true
+//    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+//    let newItems = (self.items.count...self.items.count + 12).map { index in
+//      return index
+//    }
+//    self.items.append(contentsOf: newItems)
+//    self.fetchingMore = false
+//    self.tableView.reloadData()
+//    })
+//}
  
 
 
 //MARK: - TableView Methods
 
 func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return images.count
+    return 1
  }
 
 func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
   let cell = tableView.dequeueReusableCell(withIdentifier: "GIFViewCell") as! GIFViewCell
     
-    cell.loadingGif.image = images[indexPath.row]
+    let imageGIF = getGifImage()
+    
+    cell.loadingGif.image = imageGIF
     cell.selectionStyle = .none
    
 
@@ -148,8 +186,5 @@ func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) ->
     }
     
 }
-
-
-
 
 
