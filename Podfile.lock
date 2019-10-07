@@ -1,86 +1,28 @@
 PODS:
   - Alamofire (4.8.2)
-  - AlamofireImage (3.5.2):
-    - Alamofire (~> 4.8)
   - Gifu (3.2.0)
-  - Localize-Swift (2.0.0)
-  - PagingDataController (2.1.0):
-    - PagingDataController/Default (= 2.1.0)
-  - PagingDataController/Core (2.1.0)
-  - PagingDataController/Default (2.1.0):
-    - PagingDataController/Core
-    - PagingDataController/UIExtension
-  - PagingDataController/UIExtension (2.1.0):
-    - PagingDataController/Core
-    - SiFUtilities
-    - SVPullToRefresh
-  - SiFUtilities (4.2.0):
-    - SiFUtilities/Default (= 4.2.0)
-  - SiFUtilities/Core (4.2.0)
-  - SiFUtilities/Default (4.2.0):
-    - SiFUtilities/Core
-    - SiFUtilities/Endpoint
-    - SiFUtilities/Helpers
-    - SiFUtilities/IBDesignable
-    - SiFUtilities/KeyValue
-    - SiFUtilities/Loading
-    - SiFUtilities/Localize
-    - SiFUtilities/Nib
-    - SiFUtilities/Runtime
-    - SiFUtilities/Show
-    - SiFUtilities/WeakObject
-  - SiFUtilities/Endpoint (4.2.0)
-  - SiFUtilities/Helpers (4.2.0)
-  - SiFUtilities/IBDesignable (4.2.0):
-    - SiFUtilities/Core
-  - SiFUtilities/KeyValue (4.2.0)
-  - SiFUtilities/Loading (4.2.0)
-  - SiFUtilities/Localize (4.2.0):
-    - Localize-Swift
-    - SiFUtilities/Core
-    - SiFUtilities/Runtime
-  - SiFUtilities/Nib (4.2.0):
-    - SiFUtilities/Core
-  - SiFUtilities/Runtime (4.2.0)
-  - SiFUtilities/Show (4.2.0):
-    - SiFUtilities/Core
-    - SiFUtilities/Localize
-  - SiFUtilities/WeakObject (4.2.0)
-  - SVPullToRefresh (0.4.1)
   - SwiftyJSON (5.0.0)
   - TinyConstraints (4.0.1)
 
 DEPENDENCIES:
   - Alamofire
-  - AlamofireImage
   - Gifu
-  - PagingDataController
   - SwiftyJSON
   - TinyConstraints
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
-    - AlamofireImage
     - Gifu
-    - Localize-Swift
-    - PagingDataController
-    - SiFUtilities
-    - SVPullToRefresh
     - SwiftyJSON
     - TinyConstraints
 
 SPEC CHECKSUMS:
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
-  AlamofireImage: 63cfe3baf1370be6c498149687cf6db3e3b00999
   Gifu: 7bcb6427457d85e0b4dff5a84ec5947ac19a93ea
-  Localize-Swift: c798ec9286494866f7068f85f7c71283ac5bdab4
-  PagingDataController: c3f294485a31a2593f58b5c39d925d550ccd62bc
-  SiFUtilities: ee431975770321d809696d58a929cfbbed680ac8
-  SVPullToRefresh: ba2e718695a43253d8bea6852d2960097dc15d8c
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
   TinyConstraints: 8dd91295e56797648c7bc335dd20e1d91ec4c192
 
-PODFILE CHECKSUM: f2eb3a124758b6cc27bf7cace930b9f6465baede
+PODFILE CHECKSUM: ed96150ff9cace2263d9ea5038b728ecf0f48494
 
 COCOAPODS: 1.7.1

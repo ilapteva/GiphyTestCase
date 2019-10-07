@@ -10,7 +10,6 @@ target 'Giphy' do
 pod 'TinyConstraints'
 pod 'Gifu'
 pod 'Alamofire'
-pod 'AlamofireImage'
 pod 'SwiftyJSON'
-pod 'PagingDataController'
+
 end

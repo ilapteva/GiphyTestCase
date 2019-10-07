@@ -12,9 +12,8 @@
 		2A1609662342703E00AFBAC0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1609652342703E00AFBAC0 /* SceneDelegate.swift */; };
 		2A16096D2342704100AFBAC0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A16096C2342704100AFBAC0 /* Assets.xcassets */; };
 		2A1609702342704100AFBAC0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A16096E2342704100AFBAC0 /* LaunchScreen.storyboard */; };
-		2A1609782342724E00AFBAC0 /* TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1609772342724D00AFBAC0 /* TableView.swift */; };
+		2A1609782342724E00AFBAC0 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1609772342724D00AFBAC0 /* TableViewController.swift */; };
 		2A16097D234276EE00AFBAC0 /* GifDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A16097C234276EE00AFBAC0 /* GifDataModel.swift */; };
-		2A5BA78D2344BD0100D07BF5 /* DispatchQueueHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5BA78C2344BD0100D07BF5 /* DispatchQueueHelper.swift */; };
 		2A5BA78F2344BD3A00D07BF5 /* giphy.gif in Resources */ = {isa = PBXBuildFile; fileRef = 2A5BA78E2344BD3900D07BF5 /* giphy.gif */; };
 		2ACC49E023450BF4001B2E59 /* giphycat.gif in Resources */ = {isa = PBXBuildFile; fileRef = 2ACC49DF23450BF4001B2E59 /* giphycat.gif */; };
 		2AE13EE0234AC20D002E2A7A /* GifExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE13EDF234AC20D002E2A7A /* GifExtension.swift */; };
@@ -30,9 +29,8 @@
 		2A16096C2342704100AFBAC0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2A16096F2342704100AFBAC0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2A1609712342704100AFBAC0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2A1609772342724D00AFBAC0 /* TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableView.swift; sourceTree = "<group>"; };
+		2A1609772342724D00AFBAC0 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		2A16097C234276EE00AFBAC0 /* GifDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifDataModel.swift; sourceTree = "<group>"; };
-		2A5BA78C2344BD0100D07BF5 /* DispatchQueueHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DispatchQueueHelper.swift; path = GifInUIImageViewResources/DispatchQueueHelper.swift; sourceTree = SOURCE_ROOT; };
 		2A5BA78E2344BD3900D07BF5 /* giphy.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = giphy.gif; sourceTree = SOURCE_ROOT; };
 		2ACC49DF23450BF4001B2E59 /* giphycat.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = giphycat.gif; sourceTree = SOURCE_ROOT; };
 		2AE13EDF234AC20D002E2A7A /* GifExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GifExtension.swift; path = Giphy/GifExtension.swift; sourceTree = SOURCE_ROOT; };
@@ -98,7 +96,6 @@
 		2A160979234276A200AFBAC0 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				2A1609772342724D00AFBAC0 /* TableView.swift */,
 				2A152FE22347648600786178 /* GIFTableViewCell.swift */,
 			);
 			path = View;
@@ -107,7 +104,7 @@
 		2A16097A234276BE00AFBAC0 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				2A5BA78C2344BD0100D07BF5 /* DispatchQueueHelper.swift */,
+				2A1609772342724D00AFBAC0 /* TableViewController.swift */,
 				2AE13EDF234AC20D002E2A7A /* GifExtension.swift */,
 			);
 			path = Controller;
@@ -248,8 +245,7 @@
 			files = (
 				2AE13EE0234AC20D002E2A7A /* GifExtension.swift in Sources */,
 				2A16097D234276EE00AFBAC0 /* GifDataModel.swift in Sources */,
-				2A5BA78D2344BD0100D07BF5 /* DispatchQueueHelper.swift in Sources */,
-				2A1609782342724E00AFBAC0 /* TableView.swift in Sources */,
+				2A1609782342724E00AFBAC0 /* TableViewController.swift in Sources */,
 				2A152FE32347648600786178 /* GIFTableViewCell.swift in Sources */,
 				2A1609642342703E00AFBAC0 /* AppDelegate.swift in Sources */,
 				2A1609662342703E00AFBAC0 /* SceneDelegate.swift in Sources */,

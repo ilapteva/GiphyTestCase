@@ -19,7 +19,6 @@ class GIFViewCell: UITableViewCell {
         view.layer.cornerRadius = 10
         view.clipsToBounds = true
         
-
         return view
     }()
     
