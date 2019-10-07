@@ -17,8 +17,6 @@ import PagingDataController
 
 class TableView: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    var fetchingMore = false
-    
      fileprivate var items = [CellItem]()
     
     // URL of random GIF using Giphy API
@@ -84,8 +82,14 @@ class TableView: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 for gifArrayItem in gifJSON["data"].arrayValue {
                     let gifId = gifArrayItem["id"]
                     let url = "https://media0.giphy.com/media/\(gifId)/giphy.gif";
-                     debugPrint(url)
-                    self.loadImage(gifURL: url)
+                    let imageURL = UIImage.gifImageWithURL(url)
+                    let item = CellItem(uiImage: imageURL!)
+                                       self.items.append(item)
+                                       DispatchQueue.main.async {
+                                           self.tableView.reloadData()
+                                       }
+                    debugPrint(url)
+                
                 }
                 
             }
@@ -112,66 +116,6 @@ class TableView: UIViewController, UITableViewDelegate, UITableViewDataSource {
         }
     
     }
-    
-    func loadImage(gifURL: String) {
-        Alamofire.request(gifURL).responseImage {
-            response in
-            debugPrint(response)
-            print(response.request)
-            print(response.response)
-            debugPrint(response.result)
-                   if let image = response.result.value {
-                       print("image downloaded: \(image)")
-                    let item = CellItem(uiImage: image)
-                    self.items.append(item)
-                    DispatchQueue.main.async {
-                        self.tableView.reloadData()
-                    }
-                    
-                   }
-
-                   else {
-                    
-//                       print ("Error \(String(describing: response.result.error))")
-//                       let alert = UIAlertController(title: "Sorry!", message: "Can't load GIF", preferredStyle: .alert)
-//                       alert.addAction(UIAlertAction(title: "Try Again", style: .default, handler: { action in
-//                             switch action.style{
-//                                print("test")
-//                             case .default:
-//                               //self.loadImage(gifUrl)
-//
-//                             @unknown default:
-//                               fatalError()
-//                           }}))
-                       //self.present(alert, animated: true, completion: nil)
-                   }
-
-               }
-    
-    }
-    
-//    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
-//
-//        let offsetY = scrollView.contentOffset.y
-//        let contentHeight = scrollView.contentSize.height
-//    if offsetY > contentHeight - scrollView.frame.height {
-//    if !fetchingMore {
-//      beginBatchFetched()
-//    }
-//    }
-//
-//    func beginBatchFetched() {
-//     fetchingMore = true
-//    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
-//    let newItems = (self.items.count...self.items.count + 12).map { index in
-//      return index
-//    }
-//    self.items.append(contentsOf: newItems)
-//    self.fetchingMore = false
-//    self.tableView.reloadData()
-//    })
-//}
- 
 
 
 //MARK: - TableView Methods
