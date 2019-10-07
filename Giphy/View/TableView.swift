@@ -19,8 +19,10 @@ class TableView: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var fetchingMore = false
     
+     fileprivate var items = [CellItem]()
+    
     // URL of random GIF using Giphy API
-    let GIF_URL = "https://api.giphy.com/v1/gifs/random?api_key=5ci16c2iy4REhED98tYKaLQ6MegBELxz&tag=kittens&rating=G"
+    let GIF_URL = "https://api.giphy.com/v1/gifs/trending?api_key=5ci16c2iy4REhED98tYKaLQ6MegBELxz&rating=G&limit=25"
     
     //MARK: - Creating UI Elements
     
@@ -45,7 +47,8 @@ class TableView: UIViewController, UITableViewDelegate, UITableViewDataSource {
         setupLabel()
         
         self.tableView.register(GIFViewCell.self, forCellReuseIdentifier: "GIFViewCell")
-        
+        startRequest()
+
     }
 
     //MARK: - UI ELements setup
@@ -68,19 +71,22 @@ class TableView: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     
     //MARK: - Get random GIF URL method using Alamofire and SwiftyJSON
-    func getGifImage() -> (UIImage?)  {
-        
-        var gifURL = ""
-        
+    func startRequest()  {
+                
         Alamofire.request(GIF_URL, method: .get).responseJSON {
             response in
             if response.result.isSuccess {
                 print ("Success! Got GIF data!")
 
                 let gifJSON : JSON = JSON(response.result.value!)
-
-                gifURL = gifJSON["data"]["image_original_url"].stringValue
-                print ("Gif URL: \(gifURL) end of URL")
+            
+            
+                for gifArrayItem in gifJSON["data"].arrayValue {
+                    let gifId = gifArrayItem["id"]
+                    let url = "https://media0.giphy.com/media/\(gifId)/giphy.gif";
+                     debugPrint(url)
+                    self.loadImage(gifURL: url)
+                }
                 
             }
             else {
@@ -89,7 +95,7 @@ class TableView: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 alert.addAction(UIAlertAction(title: "Try Again", style: .default, handler: { action in
                       switch action.style{
                       case .default:
-                            self.getGifImage()
+                        self.startRequest()
 
                       case .cancel:
                             print("cancel")
@@ -104,39 +110,45 @@ class TableView: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 self.present(alert, animated: true, completion: nil)
             }
         }
-        
-        
-        var imageGIF: UIImage? = nil
+    
+    }
+    
+    func loadImage(gifURL: String) {
         Alamofire.request(gifURL).responseImage {
             response in
             debugPrint(response)
-
             print(response.request)
             print(response.response)
             debugPrint(response.result)
-            if let image = response.result.value {
-                print("image downloaded: \(imageGIF)")
-                imageGIF = response.result.value!
-            }
-            else {
-                imageGIF = UIImage()
-                print ("Error \(String(describing: response.result.error))")
-                let alert = UIAlertController(title: "Sorry!", message: "Can't load GIF", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Try Again", style: .default, handler: { action in
-                      switch action.style{
-                      case .default:
-                        self.getGifImage()
-                        
-                      @unknown default:
-                        fatalError()
-                    }}))
-                self.present(alert, animated: true, completion: nil)
-            }
+                   if let image = response.result.value {
+                       print("image downloaded: \(image)")
+                    let item = CellItem(uiImage: image)
+                    self.items.append(item)
+                    DispatchQueue.main.async {
+                        self.tableView.reloadData()
+                    }
+                    
+                   }
 
-        }
-        return imageGIF
-    }
+                   else {
+                    
+//                       print ("Error \(String(describing: response.result.error))")
+//                       let alert = UIAlertController(title: "Sorry!", message: "Can't load GIF", preferredStyle: .alert)
+//                       alert.addAction(UIAlertAction(title: "Try Again", style: .default, handler: { action in
+//                             switch action.style{
+//                                print("test")
+//                             case .default:
+//                               //self.loadImage(gifUrl)
+//
+//                             @unknown default:
+//                               fatalError()
+//                           }}))
+                       //self.present(alert, animated: true, completion: nil)
+                   }
+
+               }
     
+    }
     
 //    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
 //
@@ -165,16 +177,15 @@ class TableView: UIViewController, UITableViewDelegate, UITableViewDataSource {
 //MARK: - TableView Methods
 
 func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return 1
+    return items.count
  }
 
 func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
   let cell = tableView.dequeueReusableCell(withIdentifier: "GIFViewCell") as! GIFViewCell
     
-    let imageGIF = getGifImage()
-    
-    cell.loadingGif.image = imageGIF
+    let item = items[indexPath.row]
+    cell.loadingGif.image = item.uiImage
     cell.selectionStyle = .none
    
 
@@ -185,6 +196,10 @@ func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) ->
         return 400
     }
     
+}
+
+struct CellItem {
+    let uiImage: UIImage
 }
 
 
